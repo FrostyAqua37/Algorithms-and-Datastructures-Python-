@@ -1,6 +1,7 @@
 #Programming Task 1.
 class Node:
     def __init__(self, data): 
+        #Initialization of the nodes.
         self.data = data
         self.next = None
         self.previous = None
@@ -10,11 +11,14 @@ class DoublyLinkedList:
         self.head = None 
         
     def append(self, data):
+        #Inserts values at the end of the list
         if self.head is None:
+            #Creates a head node if there isnt one
             newNode = Node(data)
             newNode.previous = None
             self.head = newNode
         else: 
+            #Creates a node and inserts the value if there is a head node.
             newNode = Node(data)
             current = self.head
             while current.next:
@@ -24,11 +28,14 @@ class DoublyLinkedList:
             newNode.next = None
         
     def prepend(self, data):
+        #Inserts values at the front of the list
         if self.head is None:
+            #Creates a head one if there isnt one
             newNode = Node(data)
             newNode.previous = None
             self.head = newNode
         else:
+            #Creates a node at the front of the list and inserts the value
             newNode = Node(data)
             self.head.previous = newNode
             newNode.next = self.head
@@ -36,20 +43,25 @@ class DoublyLinkedList:
             newNode.previous = None
 
     def print(self):
+        #Displays the current node in the linked list. 
         current = self.head
         while current:
             print(current.data)
             current = current.next
 
     def delete(self, key):
+        #Removes nodes in the linked list based on number or character. 
         current = self.head 
         while current:
             if current.data == key and current == self.head:
+                #Checks if the current node value is the same as the number/character we want to remove and if its the head node
                 if not current.next:
+                    #Removes the head node
                     current = None
                     self.head = None
                     return
                 else:
+                    #Removes the head node when there is more than 1 node in the list 
                     nxt = current.next
                     current.next = None
                     nxt.previous = None
@@ -58,7 +70,9 @@ class DoublyLinkedList:
                     return
                      
             elif current.data == key:
+                #Checks if the node value is the same as the number/character we want to remove
                 if current.next:
+                    #Removes the a node when there is many nodes in a list
                     nxt = current.next
                     previous = current.previous
                     previous.next = nxt
@@ -68,6 +82,7 @@ class DoublyLinkedList:
                     current = None
                     return 
                 else:
+                    #Removes the last node in the list
                     previous = current.previous
                     previous.next = None
                     current.previous = None
